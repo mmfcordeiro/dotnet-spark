@@ -51,8 +51,8 @@ RUN apt-get update \
    &&  tar -xvzf Microsoft.Spark.Worker.netcoreapp${DOTNET_CORE_VERSION}.linux-x64-${DOTNET_SPARK_VERSION}.tar.gz \
    &&  mv Microsoft.Spark.Worker-${DOTNET_SPARK_VERSION} /dotnet/ \
    &&  rm Microsoft.Spark.Worker.netcoreapp${DOTNET_CORE_VERSION}.linux-x64-${DOTNET_SPARK_VERSION}.tar.gz
-COPY dir:dotnet/HelloSpark in /dotnet/HelloSpark
-COPY file:etc/supervisor.conf in /etc/supervisor.conf
+COPY dir:./dotnet/HelloSpark in /dotnet/HelloSpark
+COPY file:./etc/supervisor.conf in /etc/supervisor.conf
 EXPOSE 6066 7077 8080 8081 8082
 CMD ["supervisord" "-c" "/etc/supervisor.conf"]
 
