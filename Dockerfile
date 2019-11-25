@@ -54,5 +54,5 @@ RUN apt-get update \
 COPY ./dotnet/HelloSpark /dotnet/HelloSpark
 COPY ./etc/supervisor.conf /etc/supervisor.conf
 EXPOSE 6066 7077 8080 8081 8082
-CMD ["supervisord" "-c" "/etc/supervisor.conf"]
+CMD "supervisord -c /etc/supervisor.conf"
 
