@@ -1,5 +1,8 @@
 FROM ubuntu:18.04
 
+RUN apt-get update && apt-get install -y supervisor
+RUN mkdir -p /var/log/supervisor
+
 RUN [ -z "$(apt-get indextargets)" ]
 RUN set -xe \
    &&  echo '#!/bin/sh' > /usr/sbin/policy-rc.d \
