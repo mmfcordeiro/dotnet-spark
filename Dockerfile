@@ -1,5 +1,6 @@
 FROM ubuntu:18.04
 
+
 RUN [ -z "$(apt-get indextargets)" ]
 RUN set -xe \
    &&  echo '#!/bin/sh' > /usr/sbin/policy-rc.d \
@@ -22,7 +23,7 @@ ENV DAEMON_RUN=true
 ENV SPARK_VERSION=2.4.4
 ENV HADOOP_VERSION=2.7
 ENV DOTNET_CORE_VERSION=2.1
-ENV DOTNET_SPARK_VERSION=0.6.0
+ENV DOTNET_SPARK_VERSION=0.5.0
 ENV SPARK_HOME=/spark
 ENV DOTNET_WORKER_DIR=/dotnet/Microsoft.Spark.Worker-${DOTNET_SPARK_VERSION}
 ENV PATH=/spark/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -53,6 +54,5 @@ RUN apt-get update \
    &&  rm Microsoft.Spark.Worker.netcoreapp${DOTNET_CORE_VERSION}.linux-x64-${DOTNET_SPARK_VERSION}.tar.gz
 COPY ./dotnet/HelloSpark /dotnet/HelloSpark
 COPY ./etc/supervisor.conf /etc/supervisor.conf
-EXPOSE 6066 7077 8080 8081 8082 9900 9901 9902 9903 9904 9905 9906 9907 9908 9909 9910
+EXPOSE 6066 7077 8080 8081 8082
 CMD /usr/bin/supervisord -c /etc/supervisor.conf
-CMD /spark/sbin/start-shuffle-service.sh
