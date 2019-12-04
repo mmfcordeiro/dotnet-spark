@@ -54,5 +54,6 @@ RUN apt-get update \
    &&  rm Microsoft.Spark.Worker.netcoreapp${DOTNET_CORE_VERSION}.linux-x64-${DOTNET_SPARK_VERSION}.tar.gz
 COPY ./dotnet/HelloSpark /dotnet/HelloSpark
 COPY ./etc/supervisor.conf /etc/supervisor.conf
-EXPOSE 6066 7077 8080 8081 8082
+EXPOSE 6066 7077 8080 8081 8082 9900-9999
 CMD /usr/bin/supervisord -c /etc/supervisor.conf
+RUN /spark/sbin/start-shuffle-service.sh
